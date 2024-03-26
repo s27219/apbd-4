@@ -20,4 +20,24 @@ public class UnitTest1
         //Assert
         Assert.False(result);
     }
+
+    public void AddUser_ThrowsExceptionWhenClientDoesNotExist()
+    {
+        //Arrange
+        var userService = new UserService();
+
+        //Act
+        Action action = () =>
+        {
+            userService.AddUser(
+                "Jan",
+                "Kowalski",
+                "Kowalski@gmail.com",
+                DateTime.Parse("2000-01-01"),
+                100
+            );
+        };
+        //Assert
+        Assert.Throws<ArgumentException>(action);
+    }
 }
